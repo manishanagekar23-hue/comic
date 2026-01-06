@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cosmic BFF 💖</title>
+<style>
+/* --- BODY & BACKGROUND --- */
+body {
+  margin:0;
+  padding:0;
+  height:100vh;
+  background: radial-gradient(circle at bottom, #05001a, #000);
+  color:white;
+  font-family: 'Segoe UI', sans-serif;
+  text-align:center;
+  overflow:hidden;
+}
+
+/* --- GLOWING TITLE --- */
+h1 {
+  margin-top:50px;
+  font-size:3em;
+  text-shadow: 0 0 20px #7f5cff, 0 0 40px #ff4dff;
+  animation: glow 1.5s infinite alternate;
+}
+@keyframes glow {
+  0% { text-shadow: 0 0 20px #7f5cff, 0 0 40px #ff4dff; }
+  100% { text-shadow: 0 0 40px #ff4dff, 0 0 60px #7f5cff; }
+}
+
+/* --- BUTTON --- */
+button {
+  margin-top:30px;
+  padding:15px 35px;
+  font-size:1.2em;
+  border:none;
+  border-radius:25px;
+  background: linear-gradient(45deg,#7f5cff,#ff4dff);
+  color:white;
+  cursor:pointer;
+  box-shadow:0 0 15px #ff4dff;
+}
+button:hover {
+  transform:scale(1.1);
+  transition:0.3s;
+}
+
+/* --- SURPRISE BOX --- */
+#surprise {
+  display:none;
+  margin-top:40px;
+  padding:20px;
+  background: rgba(255,255,255,0.1);
+  border-radius:15px;
+  font-size:1.3em;
+  animation: fadeIn 1s ease;
+}
+@keyframes fadeIn {
+  from {opacity:0; transform:scale(0.8);}
+  to {opacity:1; transform:scale(1);}
+}
+
+/* --- STARS --- */
+.star {
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  animation: twinkle 2s infinite alternate;
+}
+@keyframes twinkle {
+  from {opacity:0.2;}
+  to {opacity:1;}
+}
+
+/* --- SHOOTING STAR --- */
+.shooting {
+  position:absolute;
+  width:3px;
+  height:80px;
+  background: linear-gradient(white, transparent);
+  transform: rotate(45deg);
+  opacity:0;
+  animation: shoot linear forwards;
+}
+@keyframes shoot {
+  0% {transform: translate(-100px,0) rotate(45deg); opacity:1;}
+  100% {transform: translate(100vw,100vh) rotate(45deg); opacity:0;}
+}
+
+/* --- FLOATING HEARTS --- */
+.heart {
+  position:absolute;
+  bottom: -10px;
+  font-size:20px;
+  animation: floatUp 6s linear forwards;
+}
+@keyframes floatUp {
+  from {transform: translateY(0); opacity:1;}
+  to {transform: translateY(-800px); opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<h1>🌌 To My Cosmic BFF 🌌</h1>
+<button onclick="activateSurprise()">Click for Surprise ⚡</button>
+
+<div id="surprise">
+💖 You are my universe! 🌠<br>
+Thanks for always being amazing! 🚀
+</div>
+
+<script>
+// --- CREATE RANDOM STARS ---
+for(let i=0;i<150;i++){
+  let star = document.createElement('div');
+  star.className='star';
+  star.style.top=Math.random()*100+'vh';
+  star.style.left=Math.random()*100+'vw';
+  star.style.width=(1+Math.random()*2)+'px';
+  star.style.height=star.style.width;
+  document.body.appendChild(star);
+}
+
+// --- SHOOTING STARS ---
+function shootingStar(){
+  let shoot = document.createElement('div');
+  shoot.className='shooting';
+  shoot.style.top=Math.random()*50+'vh';
+  shoot.style.left='-100px';
+  shoot.style.height=(50+Math.random()*50)+'px';
+  document.body.appendChild(shoot);
+  setTimeout(()=>shoot.remove(),2000);
+}
+setInterval(shootingStar,2000);
+
+// --- SURPRISE & FLOATING HEARTS ---
+function activateSurprise(){
+  document.getElementById('surprise').style.display='block';
+  
+  // create hearts
+  setInterval(()=>{
+    let heart = document.createElement('div');
+    heart.className='heart';
+    heart.textContent='💜';
+    heart.style.left=Math.random()*100+'vw';
+    heart.style.fontSize=(15+Math.random()*25)+'px';
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+  },300);
+}
+</script>
+
+</body>
+</html>
